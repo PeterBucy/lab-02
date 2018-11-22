@@ -12,7 +12,7 @@ function HornedAnimal(obj) {
 
 const allAnimals = [];
 
-HornedAnimal.prototype.render = function {
+HornedAnimal.prototype.render = function() {
 	$('main').append('<section class="clone"><section>');
 	let $clone = $('section[class="clone"]');
 
@@ -23,13 +23,14 @@ HornedAnimal.prototype.render = function {
 	$clone.find('h2').text(this.title);
 	$clone.find('p').text(this.description);
 	$clone.find('img').attr('src', this.image_url);
-	// $clone.find()
 
+	$clone.removeClass('clone');
+	$clone.attr('class', this.name);
 
 }
 
 function readJson() {
-  $.get('./page-1.json', 'json')
+  $.get('./data/page-1.json', 'json')
     .then( data => {
       data.forEach( newHornedAnimalObj => {
         new HornedAnimal( newHornedAnimalObj);

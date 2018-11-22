@@ -29,7 +29,7 @@ HornedAnimal.prototype.render = function {
 }
 
 function readJson() {
-  $.get('./data.json', 'json')
+  $.get('./page-1.json', 'json')
     .then( data => {
       data.forEach( newHornedAnimalObj => {
         new HornedAnimal( newHornedAnimalObj);

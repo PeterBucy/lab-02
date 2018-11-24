@@ -20,7 +20,7 @@ console.log(allKeywords);
 function makeList(){
   let select = document.getElementById("keyWords")
   var testArray = ["pole", "tree", "thing"]
-  for(var i = 0; i < testArray.length; i++) {
+  for(var i in testArray) {
     select.add(new Option(testArray[i] ) );
    }
 

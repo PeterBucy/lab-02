@@ -1,4 +1,7 @@
 'use strict'
+const allAnimals =[];
+const allKeywords =[];
+const newAnimal = [];
 
 function HornedAnimal(obj) {
   this.image_url = obj.image_url;
@@ -8,12 +11,22 @@ function HornedAnimal(obj) {
   this.description = obj.description;
 
 	allAnimals.push(this);
-	allKeywords.push(this.keyword);
+  allKeywords.push(this.keyword);
+  
 }
 
-const allAnimals = [];
-const allKeywords =[];
 console.log(allKeywords);
+
+function makeList(){
+  let select = document.getElementById("keyWords")
+  var testArray = ["pole", "tree", "thing"]
+  for(var i = 0; i < testArray.length; i++) {
+    select.add(new Option(testArray[i] ) );
+   }
+
+  }
+  
+  makeList();
 
 HornedAnimal.prototype.render = function() {
   $('main').append('<section class="clone"><section>');
@@ -33,10 +46,6 @@ HornedAnimal.prototype.render = function() {
 
 HornedAnimal.prototype.selectByKeyword = function() {
 
-// loop through the array
-// pick the keyword of each obj
-// append keyword to the select element
-// render only those images to the page or hide all other images
 }
 
 function readJson() {
@@ -55,4 +64,5 @@ function readJson() {
 
 $(() => readJson());
 
-console.log(allAnimals);
+
+

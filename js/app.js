@@ -10,23 +10,20 @@ function HornedAnimal(obj) {
   this.keyword = obj.keyword;
   this.description = obj.description;
 
-	allAnimals.push(this);
-  allKeywords.push(this.keyword);
-  
+  allAnimals.push(this);
+  // allKeywords.push(this.keyword);
 }
 
-console.log(allKeywords);
+// function makeList(){
+//   let select = document.getElementById('keyWords')
+//   var testArray = ['pole', 'tree', 'thing']
+//   for(var i in testArray) {
+//     select.add(new Option(testArray[i] ) );
+//   }''
 
-function makeList(){
-  let select = document.getElementById("keyWords")
-  var testArray = ["pole", "tree", "thing"]
-  for(var i in testArray) {
-    select.add(new Option(testArray[i] ) );
-   }
+// }
 
-  }
-  
-  makeList();
+// makeList();
 
 HornedAnimal.prototype.render = function() {
   $('main').append('<section class="clone"><section>');
@@ -45,7 +42,13 @@ HornedAnimal.prototype.render = function() {
 }
 
 HornedAnimal.prototype.selectByKeyword = function() {
-
+  allAnimals.forEach( (animalObj) => { // for each new horned animal object instance, do the following...
+    if (!allKeywords.includes(animalObj.keyword)) { // check each keyword against any in the keyword array, to eliminate duplicates
+      allKeywords.push(animalObj.keyword); //if the keyword is not in the array already, add it
+      console.log(allKeywords); 
+      $('#default-option').after(`<option value = "${animalObj.keyword}">${animalObj.keyword}</option>`); //find the first option of the dropdown filter, and add each keyword as a new item
+    }
+  })
 }
 
 function readJson() {
@@ -58,11 +61,9 @@ function readJson() {
     .then( () => {
       allAnimals.forEach( animal =>{
         animal.render();
+        animal.selectByKeyword();
       })
     })
 }
 
 $(() => readJson());
-
-
-

@@ -11,19 +11,7 @@ function HornedAnimal(obj) {
   this.description = obj.description;
 
   allAnimals.push(this);
-  // allKeywords.push(this.keyword);
 }
-
-// function makeList(){
-//   let select = document.getElementById('keyWords')
-//   var testArray = ['pole', 'tree', 'thing']
-//   for(var i in testArray) {
-//     select.add(new Option(testArray[i] ) );
-//   }''
-
-// }
-
-// makeList();
 
 HornedAnimal.prototype.render = function() {
   $('main').append('<section class="clone"><section>');
@@ -38,7 +26,7 @@ HornedAnimal.prototype.render = function() {
   $clone.find('img').attr('src', this.image_url);
 
   $clone.removeClass('clone');
-  $clone.attr('class', this.name);
+  $clone.attr('class', this.keyword);
 }
 
 HornedAnimal.prototype.selectByKeyword = function() {
@@ -65,5 +53,17 @@ function readJson() {
       })
     })
 }
+
+$('select').on('change', function () {
+  let $selection = $(this).val();
+
+  if($selection === 'default') {
+    $('section').show();
+    return;
+  }
+
+  $('section').hide();
+  $(`section[class = "${$selection}"]`).show();
+});
 
 $(() => readJson());

@@ -103,6 +103,10 @@ function readJson() {
 
         animal.selectByKeyword();
 
+        allAnimals = [];
+
+        allKeywords = [];
+
       })
 
     })
@@ -110,6 +114,39 @@ function readJson() {
 }
 
 
+
+function readJson2() {
+
+  $.get('./data/page-2.json', 'json')
+
+    .then( data => {
+
+      data.forEach( newHornedAnimalObj => {
+
+        new HornedAnimal( newHornedAnimalObj);
+
+      })
+
+    })
+
+    .then( () => {
+
+      allAnimals.forEach( animal =>{
+
+  
+        animal.render();
+
+        animal.selectByKeyword();
+        
+        allAnimals = [];
+
+        allKeywords = [];
+
+      })
+
+    })
+
+}
 
 $('select').on('change', function () {
 
@@ -135,10 +172,28 @@ $('select').on('change', function () {
 
 
 
+//Click Function for Button to change pages
+
+$('#button1').on('click',function(){
+
+  $('section').hide();
+
+  $(() => readJson());
+
+})
+
+
+
+//Click Handler for Button 2
+
+$('#button2').on('click',function(){
+
+  $('section').hide();
+
+  $(() => readJson2());
+
+})
+
 
 
 $(() => readJson());
-
-
-
-

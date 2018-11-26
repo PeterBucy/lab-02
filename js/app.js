@@ -48,8 +48,6 @@ function readJson() {
     })
     .then( () => {
       allAnimals.forEach( animal =>{
-        allAnimals = [];
-        allKeywords = [];
         animal.render();
         animal.selectByKeyword();
       })

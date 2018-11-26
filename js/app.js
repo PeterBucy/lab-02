@@ -56,22 +56,6 @@ function readJson() {
     })
 }
 
-function readJson2() {
-  $.get('./data/page-2.json', 'json')
-    .then( data => {
-      data.forEach( newHornedAnimalObj => {
-        new HornedAnimal( newHornedAnimalObj);
-      })
-    })
-    .then( () => {
-      allAnimals.forEach( animal =>{
-        allAnimals = [];
-        allKeywords = [];
-        animal.render();
-        animal.selectByKeyword();
-      })
-    })
-}
 $('select').on('change', function () {
   let $selection = $(this).val();
 
@@ -84,16 +68,5 @@ $('select').on('change', function () {
   $(`section[class = "${$selection}"]`).show();
 });
 
-//Click Function for Button to change pages
-$('#button1').on('click',function(){
-  $('section').hide();
-  $(() => readJson());
-})
-
-//Click Handler for Button 2
-$('#button2').on('click',function(){
-  $('section').hide();
-  $(() => readJson2());
-})
 
 $(() => readJson());

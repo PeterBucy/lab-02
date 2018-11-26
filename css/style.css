@@ -1,0 +1,31 @@
+main{
+}
+header div{
+height: 100px;
+background-color: blue;
+}
+section {
+
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    height: 200px;
+
+
+  }
+  
+  img{
+    float: left;
+    height: 200px;
+    width: 200px;
+    border: 2px solid red;
+    align-self: auto;
+  }
+
+  h2{
+    align-self: auto;
+  }
+
+  p{
+    align-self: auto;
+  }

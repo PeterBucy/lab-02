@@ -30,12 +30,10 @@ function HornedAnimal(obj) {
 
 
 HornedAnimal.prototype.render = function() {
-
+  
   $('main').append('<section class="clone"><section>');
 
   let $clone = $('section[class="clone"]');
-
-
 
   let animalTemplate = $('#photo-template').html();
 
@@ -69,7 +67,7 @@ HornedAnimal.prototype.selectByKeyword = function() {
 
       allKeywords.push(animalObj.keyword); //if the keyword is not in the array already, add it
 
-      console.log(allKeywords);
+      // console.log(allKeywords);
 
       $('#default-option').after(`<option value = "${animalObj.keyword}">${animalObj.keyword}</option>`); //find the first option of the dropdown filter, and add each keyword as a new item
 
@@ -133,7 +131,6 @@ function readJson2() {
 
       allAnimals.forEach( animal =>{
 
-  
         animal.render();
 
         animal.selectByKeyword();
@@ -151,23 +148,18 @@ function readJson2() {
 $('select').on('change', function () {
 
   let $selection = $(this).val();
-
-
-
+  
   if($selection === 'default') {
 
     $('section').show();
 
     return;
-
+    
   }
-
-
 
   $('section').hide();
 
   $(`section[class = "${$selection}"]`).show();
-
 });
 
 
@@ -176,7 +168,7 @@ $('select').on('change', function () {
 
 $('#button1').on('click',function(){
 
-  $('section').hide();
+  $('section').remove();
 
   $(() => readJson());
 
@@ -188,7 +180,7 @@ $('#button1').on('click',function(){
 
 $('#button2').on('click',function(){
 
-  $('section').hide();
+  $('section').remove();
 
   $(() => readJson2());
 

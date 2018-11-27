@@ -5,13 +5,10 @@ let allAnimals =[];
 
 let allKeywords =[];
 
-const newAnimal = [];
-
-
 
 function HornedAnimal(obj) {
 
-  this.image_url = `<img src="${obj.image_url}"`;
+  this.image_url = obj.image_url;
 
   this.title = obj.title;
 
@@ -21,40 +18,49 @@ function HornedAnimal(obj) {
 
   this.description = obj.description;
 
-
-
   allAnimals.push(this);
 
 }
 
 
 
+// HornedAnimal.prototype.render = function() {
+//   $('main').append('<section class="clone"><section>');
+//   let $clone = $('section[class="clone"]');
+
+//   let animalTemplate = $('#photo-template').html();
+
+
+
+//   $clone.html(animalTemplate);
+
+
+
+//   $clone.find('h2').text(this.title);
+
+//   $clone.find('p').text(this.description);
+
+//   $clone.find('img').attr('src', this.image_url);
+
+
+
+//   $clone.removeClass('clone');
+
+//   $clone.attr('class', this.keyword);
+
+// }
+
 HornedAnimal.prototype.render = function() {
-  $('main').append('<section class="clone"><section>');
-
-  let $clone = $('section[class="clone"]');
-
-  let animalTemplate = $('#photo-template').html();
-
-
-
-  $clone.html(animalTemplate);
-
-
-
-  $clone.find('h2').text(this.title);
-
-  $clone.find('p').text(this.description);
-
-  $clone.find('img').attr('src', this.image_url);
-
-
-
-  $clone.removeClass('clone');
-
-  $clone.attr('class', this.keyword);
-
-}
+  // 1. Get the template from the HTML document
+  let templateHtml = $('#handlebars').html()
+  // 2. Use Handlebars to "compile" the HTML
+  let photoTemplate = Handlebars.compile(templateHtml);
+  // 3. Do not forget to return the HTML from this method
+  let newHornedAnimal = photoTemplate(this);
+  console.log('render');
+  // console.log(newNeighborhood);
+  return newHornedAnimal;
+};
 
 
 
@@ -89,14 +95,13 @@ function readJson() {
         new HornedAnimal( newHornedAnimalObj);
 
       })
-
+      console.log('hi',allAnimals);
     })
 
     .then( () => {
-
+      console.log('what am i?',allAnimals);
       allAnimals.forEach( animal =>{
-
-        animal.render();
+        $('#photo-template').append(animal.render());
 
         animal.selectByKeyword();
 
@@ -109,7 +114,6 @@ function readJson() {
     })
 
 }
-
 
 
 function readJson2() {
@@ -129,9 +133,8 @@ function readJson2() {
     .then( () => {
 
       allAnimals.forEach( animal =>{
-
-        animal.render();
-
+        console.log('hi',animal);
+        $('#photo-template').append(animal.render());
         animal.selectByKeyword();
         allAnimals = [];
 
@@ -148,24 +151,22 @@ $('select').on('change', function () {
   let $selection = $(this).val();
   if($selection === 'default') {
 
-    $('section').show();
+    $('div').show();
 
     return;
 
   }
 
-  $('section').hide();
+  $('div').hide();
 
-  $(`section[class = "${$selection}"]`).show();
+  $(`div[class = "${$selection}"]`).show();
 });
-
-
 
 //Click Function for Button to change pages
 
 $('#button1').on('click',function(){
 
-  $('section').remove();
+  $('div').remove();
 
   $(() => readJson());
 
@@ -177,7 +178,7 @@ $('#button1').on('click',function(){
 
 $('#button2').on('click',function(){
 
-  $('section').remove();
+  $('div').remove();
 
   $(() => readJson2());
 

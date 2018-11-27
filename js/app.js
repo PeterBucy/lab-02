@@ -157,16 +157,16 @@ $('select').on('change', function () {
 
   }
 
-  $('div').hide();
+  $('section').hide();
 
-  $(`div[class = "${$selection}"]`).show();
+  $(`section[class = "${$selection}"]`).show();
 });
 
 //Click Function for Button to change pages
 
 $('#button1').on('click',function(){
 
-  $('div').remove();
+  $('section').remove();
 
   $(() => readJson());
 
@@ -178,7 +178,7 @@ $('#button1').on('click',function(){
 
 $('#button2').on('click',function(){
 
-  $('div').remove();
+  $('section').remove();
 
   $(() => readJson2());
 

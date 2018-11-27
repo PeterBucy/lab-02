@@ -11,7 +11,7 @@ const newAnimal = [];
 
 function HornedAnimal(obj) {
 
-  this.image_url = obj.image_url;
+  this.image_url = `<img src="${obj.image_url}"`;
 
   this.title = obj.title;
 
@@ -30,7 +30,6 @@ function HornedAnimal(obj) {
 
 
 HornedAnimal.prototype.render = function() {
-  
   $('main').append('<section class="clone"><section>');
 
   let $clone = $('section[class="clone"]');
@@ -134,7 +133,6 @@ function readJson2() {
         animal.render();
 
         animal.selectByKeyword();
-        
         allAnimals = [];
 
         allKeywords = [];
@@ -148,13 +146,12 @@ function readJson2() {
 $('select').on('change', function () {
 
   let $selection = $(this).val();
-  
   if($selection === 'default') {
 
     $('section').show();
 
     return;
-    
+
   }
 
   $('section').hide();

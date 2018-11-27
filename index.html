@@ -12,6 +12,14 @@
 
   <link rel="stylesheet" href="css/styles.css">
 
+  <script id="handlebars" type="text/x-handlebars-template">
+    
+            <h2>{{ titlle }}</h2>
+    
+            <img src ="{{image_url}}">
+    
+            <p>{{ description }}</p>
+  </script>
 </head>
 
 <body>
@@ -37,18 +45,8 @@
   </header>
 
   <main>
-    <script type="text/x-handlebars-template">
-
       <div id="photo-template">
-
-        <h2>{{ titlle }}</h2>
-
-        {{{ image_url }}}
-
-        <p>{{ description }}</p>
-     
       </div>
-    </script>
   </main>
 
   <footer>

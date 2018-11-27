@@ -11,7 +11,7 @@ const newAnimal = [];
 
 function HornedAnimal(obj) {
 
-  this.image_url = obj.image_url;
+  this.image_url = `<img src="${obj.image_url}"`;
 
   this.title = obj.title;
 
@@ -30,12 +30,9 @@ function HornedAnimal(obj) {
 
 
 HornedAnimal.prototype.render = function() {
-
   $('main').append('<section class="clone"><section>');
 
   let $clone = $('section[class="clone"]');
-
-
 
   let animalTemplate = $('#photo-template').html();
 
@@ -69,7 +66,7 @@ HornedAnimal.prototype.selectByKeyword = function() {
 
       allKeywords.push(animalObj.keyword); //if the keyword is not in the array already, add it
 
-      console.log(allKeywords);
+      // console.log(allKeywords);
 
       $('#default-option').after(`<option value = "${animalObj.keyword}">${animalObj.keyword}</option>`); //find the first option of the dropdown filter, and add each keyword as a new item
 
@@ -103,6 +100,10 @@ function readJson() {
 
         animal.selectByKeyword();
 
+        allAnimals = [];
+
+        allKeywords = [];
+
       })
 
     })
@@ -111,12 +112,40 @@ function readJson() {
 
 
 
+function readJson2() {
+
+  $.get('./data/page-2.json', 'json')
+
+    .then( data => {
+
+      data.forEach( newHornedAnimalObj => {
+
+        new HornedAnimal( newHornedAnimalObj);
+
+      })
+
+    })
+
+    .then( () => {
+
+      allAnimals.forEach( animal =>{
+
+        animal.render();
+
+        animal.selectByKeyword();
+        allAnimals = [];
+
+        allKeywords = [];
+
+      })
+
+    })
+
+}
+
 $('select').on('change', function () {
 
   let $selection = $(this).val();
-
-
-
   if($selection === 'default') {
 
     $('section').show();
@@ -125,20 +154,35 @@ $('select').on('change', function () {
 
   }
 
-
-
   $('section').hide();
 
   $(`section[class = "${$selection}"]`).show();
-
 });
 
 
 
+//Click Function for Button to change pages
+
+$('#button1').on('click',function(){
+
+  $('section').remove();
+
+  $(() => readJson());
+
+})
+
+
+
+//Click Handler for Button 2
+
+$('#button2').on('click',function(){
+
+  $('section').remove();
+
+  $(() => readJson2());
+
+})
+
 
 
 $(() => readJson());
-
-
-
-

@@ -23,33 +23,6 @@ function HornedAnimal(obj) {
 }
 
 
-
-// HornedAnimal.prototype.render = function() {
-//   $('main').append('<section class="clone"><section>');
-//   let $clone = $('section[class="clone"]');
-
-//   let animalTemplate = $('#photo-template').html();
-
-
-
-//   $clone.html(animalTemplate);
-
-
-
-//   $clone.find('h2').text(this.title);
-
-//   $clone.find('p').text(this.description);
-
-//   $clone.find('img').attr('src', this.image_url);
-
-
-
-//   $clone.removeClass('clone');
-
-//   $clone.attr('class', this.keyword);
-
-// }
-
 HornedAnimal.prototype.render = function() {
   // 1. Get the template from the HTML document
   let templateHtml = $('#handlebars').html()
@@ -74,7 +47,7 @@ HornedAnimal.prototype.selectByKeyword = function() {
 
       // console.log(allKeywords);
 
-      $('#default-option').after(`<option value = "${animalObj.keyword}">${animalObj.keyword}</option>`); //find the first option of the dropdown filter, and add each keyword as a new item
+      $('#default-option').after(`<option value = "${animalObj.keyword}" class = "words">${animalObj.keyword}</option>`); //find the first option of the dropdown filter, and add each keyword as a new item
 
     }
 
@@ -95,11 +68,11 @@ function readJson() {
         new HornedAnimal( newHornedAnimalObj);
 
       })
-      console.log('hi',allAnimals);
+
     })
 
     .then( () => {
-      console.log('what am i?',allAnimals);
+
       allAnimals.forEach( animal =>{
         $('#photo-template').append(animal.render());
 
@@ -133,7 +106,7 @@ function readJson2() {
     .then( () => {
 
       allAnimals.forEach( animal =>{
-        console.log('hi',animal);
+ 
         $('#photo-template').append(animal.render());
         animal.selectByKeyword();
         allAnimals = [];
@@ -168,6 +141,8 @@ $('#button1').on('click',function(){
 
   $('section').remove();
 
+  $('.words').remove();
+
   $(() => readJson());
 
 })
@@ -179,6 +154,8 @@ $('#button1').on('click',function(){
 $('#button2').on('click',function(){
 
   $('section').remove();
+
+  $('.words').remove();
 
   $(() => readJson2());
 

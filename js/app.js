@@ -26,8 +26,6 @@ HornedAnimal.prototype.render = function() {
 };
 
 HornedAnimal.prototype.selectByKeyword = function() {
-  $('#photo-template').addClass(`${this.keyword}`);
-  
   allAnimals.forEach( (animalObj) => { // for each new horned animal object instance, do the following...
     if (!allKeywords.includes(animalObj.keyword)) { // check each keyword against any in the keyword array, to eliminate duplicates
       allKeywords.push(animalObj.keyword); //if the keyword is not in the array already, add it
@@ -72,7 +70,6 @@ function readJson2() {
 
 $('select').on('change', function () {
   let $selection = $(this).val();
-
   if($selection === 'default') {
     $('#photo-template').show();
     return;

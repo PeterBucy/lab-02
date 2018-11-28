@@ -45,7 +45,7 @@ main {
 
 }
 
-main section {
+main div {
 
     width: 300px;
 
@@ -57,13 +57,7 @@ main section {
 
 }
 
-#photo-template {
-
-    display: none;
-
-}
-
-section h2 {
+div h2 {
 
     text-align: center;
 
@@ -71,15 +65,17 @@ section h2 {
 
 }
 
-section img {
+div img {
 
-    margin-left: 50px;
+    width: 200px;
 
-    margin-right: 50px;
+    height: 250px;
+
+    margin: 10px 50px;
 
 }
 
-section p {
+div p {
 
     text-align: center;
 

@@ -66,7 +66,12 @@ HornedAnimal.prototype.selectByKeyword = function() {
   })
 
 }
+let sortByHorns = () => {
 
+  allAnimals.sort((function(a, b) {return a.horns - b.horns}))
+  return allAnimals
+
+};
 
 
 function readJson() {
@@ -91,11 +96,11 @@ function readJson() {
 
         animal.selectByKeyword();
 
-        allAnimals = [];
-
-        allKeywords = [];
+  
 
       })
+
+
 
     })
 
@@ -125,15 +130,14 @@ function readJson2() {
 
         animal.selectByKeyword();
 
-        allAnimals = [];
-
-        allKeywords = [];
 
       })
-
+ 
     })
 
 }
+
+
 
 
 
@@ -159,15 +163,18 @@ $('select').on('change', function () {
 
 //Click Function for Button to change pages
 
-$('#button1').on('click',function(){
-
-  $('#photo-template').remove();
+$('#button1').on('click',function(){;
 
   $('.words').remove();
 
   $('main').empty() 
 
   $(() => readJson());
+
+    
+  allAnimals = [];
+
+  allKeywords = [];
 
 })
 
@@ -177,16 +184,33 @@ $('#button1').on('click',function(){
 
 $('#button2').on('click',function(){
 
-  $('#photo-template').remove();
-
   $('.words').remove();
 
   $('main').empty() 
 
   $(() => readJson2());
 
+    
+  allAnimals = [];
+
+  allKeywords = [];
+
 })
 
+
+
+$('#sort').on('click',function(allAnimals){
+
+  sortByHorns();
+
+  $('main').empty() 
+
+  $(() => readJson());
+
+  $(() => readJson2());
+
+  
+})
 
 
 $(() => readJson());

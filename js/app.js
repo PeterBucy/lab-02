@@ -229,12 +229,6 @@ $('#sort').on('click',function(){
   sortByHorns();
   readJson3();
 
-  // allAnimals = [];
-
-  // allKeywords = [];
-
-  // $(() => readJson2());
-
 })
 
 

@@ -223,9 +223,6 @@ $('#sort').on('click',function(){
 
   $('main').empty();
 
-
-  $('.words').remove();
-
   sortByHorns();
   readJson3();
 

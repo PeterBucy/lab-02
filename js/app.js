@@ -67,6 +67,20 @@ HornedAnimal.prototype.selectByKeyword = function () {
 
 }
 
+let sortByTitle = () => {
+
+  allAnimals.sort(function (a, b) { 
+    
+    if(a.title < b.title) return -1;
+
+    if(a.title > b.title) return 1;
+
+    return 0;
+})
+
+
+};
+
 let sortByHorns = () => {
 
   allAnimals.sort(function(a, b){
@@ -220,12 +234,16 @@ $('#button2').on('click', function () {
 
 
 $('#sort').on('click',function(){
-
   $('main').empty();
-
   sortByHorns();
   readJson3();
+})
 
+
+$('#sort2').on('click',function(allAnimals){
+  $('main').empty();
+  sortByTitle(allAnimals);
+  readJson3();
 })
 
 

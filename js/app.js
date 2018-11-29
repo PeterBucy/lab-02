@@ -3,9 +3,9 @@
 
 
 
-let allAnimals =[];
+let allAnimals = [];
 
-let allKeywords =[];
+let allKeywords = [];
 
 
 
@@ -29,8 +29,7 @@ function HornedAnimal(obj) {
 
 
 
-HornedAnimal.prototype.render = function() {
-  
+HornedAnimal.prototype.render = function () {
   // 1. Get the template from the HTML document
 
   let templateHtml = $('#handlebars').html()
@@ -51,9 +50,9 @@ HornedAnimal.prototype.render = function() {
 
 
 
-HornedAnimal.prototype.selectByKeyword = function() {
+HornedAnimal.prototype.selectByKeyword = function () {
 
-  allAnimals.forEach( (animalObj) => { // for each new horned animal object instance, do the following...
+  allAnimals.forEach((animalObj) => { // for each new horned animal object instance, do the following...
 
     if (!allKeywords.includes(animalObj.keyword)) { // check each keyword against any in the keyword array, to eliminate duplicates
 
@@ -68,7 +67,7 @@ HornedAnimal.prototype.selectByKeyword = function() {
 }
 let sortByHorns = () => {
 
-  allAnimals.sort((function(a, b) {return a.horns - b.horns}))
+  allAnimals.sort((function (a, b) { return a.horns - b.horns }))
   return allAnimals
 
 };
@@ -78,25 +77,25 @@ function readJson() {
 
   $.get('./data/page-1.json', 'json')
 
-    .then( data => {
+    .then(data => {
 
-      data.forEach( newHornedAnimalObj => {
+      data.forEach(newHornedAnimalObj => {
 
-        new HornedAnimal( newHornedAnimalObj);
+        new HornedAnimal(newHornedAnimalObj);
 
       })
 
     })
 
-    .then( () => {
+    .then(() => {
 
-      allAnimals.forEach( animal =>{
+      allAnimals.forEach(animal => {
 
         $('main').append(animal.render());
 
         animal.selectByKeyword();
 
-  
+
 
       })
 
@@ -112,19 +111,19 @@ function readJson2() {
 
   $.get('./data/page-2.json', 'json')
 
-    .then( data => {
+    .then(data => {
 
-      data.forEach( newHornedAnimalObj => {
+      data.forEach(newHornedAnimalObj => {
 
-        new HornedAnimal( newHornedAnimalObj);
+        new HornedAnimal(newHornedAnimalObj);
 
       })
 
     })
 
-    .then( () => {
+    .then(() => {
 
-      allAnimals.forEach( animal =>{
+      allAnimals.forEach(animal => {
 
         $('main').append(animal.render());
 
@@ -132,7 +131,6 @@ function readJson2() {
 
 
       })
- 
     })
 
 }
@@ -145,7 +143,7 @@ $('select').on('change', function () {
 
   let $selection = $(this).val();
 
-  if($selection === 'default') {
+  if ($selection === 'default') {
 
     $('div').show();
 
@@ -163,15 +161,14 @@ $('select').on('change', function () {
 
 //Click Function for Button to change pages
 
-$('#button1').on('click',function(){;
+$('#button1').on('click', function () {
 
   $('.words').remove();
 
-  $('main').empty() 
+  $('main').empty()
 
   $(() => readJson());
 
-    
   allAnimals = [];
 
   allKeywords = [];
@@ -182,34 +179,35 @@ $('#button1').on('click',function(){;
 
 //Click Handler for Button 2
 
-$('#button2').on('click',function(){
+$('#button2').on('click', function () {
 
   $('.words').remove();
 
-  $('main').empty() 
+  $('main').empty()
 
   $(() => readJson2());
 
-    
+
   allAnimals = [];
 
   allKeywords = [];
 
 })
 
-
-
-$('#sort').on('click',function(allAnimals){
+$('#sort').on('click',function(){
 
   sortByHorns();
 
-  $('main').empty() 
+  $('.words').remove();
+
+  $('main').empty()
 
   $(() => readJson());
 
-  $(() => readJson2());
+  allAnimals = [];
 
-  
+  allKeywords = [];
+
 })
 
 
